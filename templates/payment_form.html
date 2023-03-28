@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Проверка работоспособности формы создания платежа</title>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <div class="py-5 text-center">
+      <h2>Создание платежа</h2>
+      <p class="lead">
+        Проверка работоспособности формы создания платежа
+      </p>
+      <div class="alert alert-warning" role="alert">
+        <strong>Пробуем сделать платеж</strong>
+      </div>
+    </div>
+    <div class="row g-5">
+      <div class="col-12">
+        <h4>Зашифрованные данные запроса</h4>
+        <form action="{{ form_action }}" method="post" enctype="application/x-www-form-urlencoded">
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="id_INTERFACE" class="form-label">INTERFACE</label>
+              <input style="background-color:#e8e8e8;" type="text" class="form-control" name="INTERFACE" value="{{ form_fields.INTERFACE }}" id="id_INTERFACE" readonly>
+            </div>
+            <div class="col-12">
+              <label for="id_KEY_INDEX" class="form-label">KEY_INDEX</label>
+              <input style="background-color:#e8e8e8;" type="text" class="form-control" name="KEY_INDEX" value="{{ form_fields.KEY_INDEX }}" id="id_KEY_INDEX" readonly>
+            </div>
+            <div class="col-12">
+              <label for="id_KEY" class="form-label">KEY</label>
+              <textarea style="background-color:#e8e8e8;" rows="5" class="form-control" name="KEY" id="id_KEY" readonly>{{ form_fields.KEY }}</textarea>
+            </div>
+            <div class="col-12">
+              <label for="id_DATA" class="form-label">DATA</label>
+              <textarea style="background-color:#e8e8e8;" rows="5" class="form-control" name="DATA" id="id_DATA" readonly>{{ form_fields.DATA }}</textarea>
+            </div>
+            <div class="col-12">
+              <label for="id_SIGNATURE" class="form-label">SIGNATURE</label>
+              <textarea style="background-color:#e8e8e8;" rows="5" class="form-control" name="SIGNATURE" id="id_SIGNATURE" readonly>{{ form_fields.SIGNATURE }}</textarea>
+            </div>
+            <div class="col-12">
+              <label for="id_CALLBACK" class="form-label">CALLBACK</label>
+              <input style="background-color:#e8e8e8;" type="text" class="form-control" name="CALLBACK" value="{{ form_fields.CALLBACK }}" id="id_CALLBACK" readonly>
+            </div>
+            <div class="col-12">
+              <label for="id_ERROR_CALLBACK" class="form-label">ERROR_CALLBACK</label>
+              <input style="background-color:#e8e8e8;" type="text" class="form-control" name="ERROR_CALLBACK" value="{{ form_fields.ERROR_CALLBACK }}" id="id_ERROR_CALLBACK" readonly>
+            </div>
+            <hr class="my-4">
+            <button class="w-100 btn btn-primary btn-md" type="submit">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="py-5 row g-5">
+      <div class="col-12">
+        <h4>Расшифрованные данные</h4>
+        <pre><code class="html">{{ xml_data }}</code></pre>
+    </div>
+  </main>
+{% endblock %}

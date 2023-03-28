@@ -1,0 +1,4 @@
+Flask==2.2.3
+lxml==4.9.2
+pycryptodome==3.17
+suds==1.1.2

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Успешная регистрация токена</title>
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="py-5 text-center">
+    <h2>Регистрация токена</h2>
+    <p class="lead">
+      Проверка работоспособности формы регистрации токена платежной карты
+    </p>
+    <div class="alert alert-success" role="alert">
+      {% if form_fields %}
+        <h4 class="alert-heading">Регистрация токена <strong></strong><code>{{ token }}</code></strong> прошла успешно!</h4>
+      {% else %}
+        <h4 class="alert-heading">Регистрация токена прошла успешно!</h4>
+      {% endif %}
+    </div>
+    <hr class="my-4">
+  </div>
+  {% if form_fields %}
+  <div class="row g-5">
+    <div class="col-12">
+      <h4>Зашифрованные данные ответа сервера</h4>
+      <form action="{{ form_action }}" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="id_INTERFACE" class="form-label">INTERFACE</label>
+            <input style="background-color:#e8e8e8;" type="text" class="form-control" name="INTERFACE" value="{{ form_fields.INTERFACE }}" id="id_INTERFACE" readonly>
+          </div>
+          <div class="col-12">
+            <label for="id_KEY_INDEX" class="form-label">KEY_INDEX</label>
+            <input style="background-color:#e8e8e8;" type="text" class="form-control" name="KEY_INDEX" value="{{ form_fields.KEY_INDEX }}" id="id_KEY_INDEX" readonly>
+          </div>
+          <div class="col-12">
+            <label for="id_KEY" class="form-label">KEY</label>
+            <textarea style="background-color:#e8e8e8;" rows="5" class="form-control" name="KEY" id="id_KEY" readonly>{{ form_fields.KEY }}</textarea>
+          </div>
+          <div class="col-12">
+            <label for="id_DATA" class="form-label">DATA</label>
+            <textarea style="background-color:#e8e8e8;" rows="5" class="form-control" name="DATA" id="id_DATA" readonly>{{ form_fields.DATA }}</textarea>
+          </div>
+          <div class="col-12">
+            <label for="id_SIGNATURE" class="form-label">SIGNATURE</label>
+            <textarea style="background-color:#e8e8e8;" rows="5" class="form-control" name="SIGNATURE" id="id_SIGNATURE" readonly>{{ form_fields.SIGNATURE }}</textarea>
+          </div>
+          <hr class="my-4">
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+  {% if xml_data %}
+    <div class="py-5 row g-5">
+      <div class="col-12">
+        <h4>Расшифрованные данные</h4>
+        <pre><code class="html">{{ xml_data }}</code></pre>
+    </div>
+  {% endif %}
+</main>
+
+{% endblock %}
